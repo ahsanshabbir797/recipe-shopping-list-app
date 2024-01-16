@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { Ingredient } from 'src/app/shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list.service';
 
@@ -9,10 +9,10 @@ import { ShoppingListService } from '../shopping-list.service';
 })
 export class ShoppingEditComponent {
 
-  constructor(private shoppingListService: ShoppingListService) {}
+  constructor(private slService: ShoppingListService) {}
 
   onAddItem(name:string,amount:number) {
-    const newIngredient = {name,amount}
-    this.shoppingListService.addIngredient(newIngredient)
+    const newIngredient = new Ingredient(name,amount)
+    this.slService.addIngredient(newIngredient)
   }
 }
