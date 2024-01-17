@@ -1,16 +1,18 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { AppComponent } from "./app.component";
 import { RecipesComponent } from "./recipes/recipes.component";
 import { ShoppingListComponent } from "./shopping-list/shopping-list.component";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 import { RecipeDetailComponent } from "./recipes/recipe-detail/recipe-detail.component";
-import { RecipeItemComponent } from "./recipes/recipe-list/recipe-item/recipe-item.component";
+import { RecipePlaceholderComponent } from "./recipes/recipe-placeholder/recipe-placeholder.component";
+import { RecipeEditComponent } from "./recipes/recipe-edit/recipe-edit.component";
 
 const appRoutes:Routes = [
     {path:'recipes',component:RecipesComponent,children:[
-        {path:'recipe-item',component:RecipeItemComponent},
-        {path:'recipe-detail',component:RecipeDetailComponent}
+        {path:'',component:RecipePlaceholderComponent},
+        {path:'new',component:RecipeEditComponent},
+        {path:':id',component:RecipeDetailComponent},
+        {path:':id/edit',component:RecipeEditComponent},
     ]},
     {path:'shopping-list',component:ShoppingListComponent},
     {path:'page-not-found',component:PageNotFoundComponent},
