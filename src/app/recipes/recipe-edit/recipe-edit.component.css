@@ -1,0 +1,27 @@
+.ingredients-btn {
+    margin-bottom: 1rem;
+}
+
+.add-recipes-header {
+    background-color: #e7e7e7;
+    padding: 1rem;
+    border-radius: 0.4rem;
+    margin-bottom: 2rem;
+}
+
+.btn-spacing {
+    margin-right: 0.5em;
+}
+
+.cancel-btn-container {
+    margin-top:1.8em;
+}
+
+.cancel-btn {
+    cursor: pointer;
+}
+
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+    border: 1px solid red;
+}

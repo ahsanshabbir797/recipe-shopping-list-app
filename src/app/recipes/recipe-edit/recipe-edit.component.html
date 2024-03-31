@@ -1,1 +1,116 @@
-<p>recipe-edit works!</p>
+    <div class="row">
+        <div class="col-xs-12">
+            <form [formGroup]="recipesForm" (ngSubmit)="onSubmit()">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h4>Add New Recipe</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input 
+                                type="text" 
+                                class="form-control"
+                                id="name"
+                                formControlName="name">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea 
+                                id="description"
+                                class="form-control" 
+                                rows="5" 
+                                formControlName="description"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label for="imagePath">Image URL</label>
+                            <input 
+                                type="text" 
+                                class="form-control"
+                                id="imagePath"
+                                formControlName="imagePath"
+                                #imagePath>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" *ngIf="imagePath.value!==''">
+                    <div class="col-xs-12">
+                        <img 
+                            [src]="imagePath.value" 
+                            alt="recipe image"
+                            class="img-responsive">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12" formArrayName="ingredients">
+                        <h4>Ingredients</h4>
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <button
+                                        class="btn btn-default ingredients-btn"
+                                        type="button"
+                                        (click)="onAddIngredient()">Add Ingredient</button>
+                            </div>
+                            <div class="col-xs-4 col-xs-offset-5">
+                                <button 
+                                    class="btn btn-danger" 
+                                    type="button"
+                                    (click)="onDeleteAllIngredients()">Delete All Ingredients</button>
+                            </div>
+                        </div>
+                        <div 
+                            class="row" 
+                            *ngFor="let ingredient of ingredients;let i = index"
+                            [formGroupName]="i">
+                            <div class="col-xs-8">
+                                <label for="name">Name</label>
+                                    <input 
+                                        type="text" 
+                                        class="form-control"
+                                        id="name"
+                                        formControlName="name">
+                            </div>
+                            <div class="col-xs-2">
+                                <label for="amount">Amount</label>
+                                <input 
+                                    type="number" 
+                                    class="form-control"
+                                    id="amount"
+                                    formControlName="amount">
+                            </div>
+                            <div class="col-xs-2 cancel-btn-container">
+                                <button 
+                                    class="btn btn-danger cancel-btn"
+                                    type="button"
+                                    (click)="onDeleteIngredient(i)">X</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-xs-12">
+                    <button 
+                        type="button"
+                        class="btn btn-success btn-spacing"
+                        [disabled]="!recipesForm.valid"
+                        type="submit">{{ editMode ? 'Update' : 'Add'}}</button>
+                    <button 
+                        type="button"
+                        class="btn btn-danger" 
+                        (click)="onCancel()">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
