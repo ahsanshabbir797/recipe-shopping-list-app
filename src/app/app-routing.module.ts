@@ -6,13 +6,14 @@ import { PageNotFoundComponent } from "./page-not-found/page-not-found.component
 import { RecipeDetailComponent } from "./recipes/recipe-detail/recipe-detail.component";
 import { RecipePlaceholderComponent } from "./recipes/recipe-placeholder/recipe-placeholder.component";
 import { RecipeEditComponent } from "./recipes/recipe-edit/recipe-edit.component";
+import { RecipesResolverService } from "./recipes/recipes-resolver.service";
 
 const appRoutes:Routes = [
     {path:'recipes',component:RecipesComponent,children:[
         {path:'',component:RecipePlaceholderComponent},
         {path:'new',component:RecipeEditComponent},
-        {path:':id',component:RecipeDetailComponent},
-        {path:':id/edit',component:RecipeEditComponent},
+        {path:':id',component:RecipeDetailComponent,resolve:[RecipesResolverService]},
+        {path:':id/edit',component:RecipeEditComponent,resolve:[RecipesResolverService]},
     ]},
     {path:'shopping-list',component:ShoppingListComponent},
     {path:'page-not-found',component:PageNotFoundComponent},
