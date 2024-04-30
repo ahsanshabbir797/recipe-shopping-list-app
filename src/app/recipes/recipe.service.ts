@@ -11,22 +11,7 @@ export class RecipeService {
   startedEditing = new Subject<number>();
 
   private recipes: Recipe[] = [
-    new Recipe(
-      'A First Recipe',
-      'This is simply a First',
-      'https://live.staticflickr.com/8719/28332021793_883a1c6c0a_b.jpg',
-      [
-        new Ingredient('Turnips', 3), 
-        new Ingredient('Peas', 10)
-      ]),
-    new Recipe(
-      'A Second Recipe',
-      'This is simply a Second',
-      'https://live.staticflickr.com/8719/28332021793_883a1c6c0a_b.jpg',
-      [
-        new Ingredient('Potatoes', 5), 
-        new Ingredient('Tomatoes', 3)
-      ]),
+    
   ];
 
   constructor(private slService:ShoppingListService) {}
@@ -40,7 +25,7 @@ export class RecipeService {
     return this.getRecipes()[index];
   }
 
-  addRecipes(recipe:Recipe) {
+  addRecipe(recipe:Recipe) {
     const {name,description,imagePath,ingredients} = recipe;
     const recipeIngredients = ingredients.map((ingredient)=>{
       return new Ingredient(ingredient.name,ingredient.amount)
@@ -49,11 +34,16 @@ export class RecipeService {
     this.recipesChanged.next(this.recipes.slice());
   }
 
+  setRecipes(fetchedRecipes:Recipe[]) {
+    this.recipes = fetchedRecipes;
+    this.recipesChanged.next(this.recipes.slice());
+  }
+
   addIngredientsToShoppingList(ingredients:Ingredient[]) {
     this.slService.addRecipeIngredients(ingredients);
   }
 
-  updateRecipeById(id:number,updatedRecipe) {
+  updateRecipeById(id:number,updatedRecipe:Recipe) {
     this.recipes[id] = updatedRecipe;
     this.recipesChanged.next(this.recipes.slice());
   }
