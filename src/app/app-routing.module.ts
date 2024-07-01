@@ -7,6 +7,7 @@ import { RecipeDetailComponent } from "./recipes/recipe-detail/recipe-detail.com
 import { RecipePlaceholderComponent } from "./recipes/recipe-placeholder/recipe-placeholder.component";
 import { RecipeEditComponent } from "./recipes/recipe-edit/recipe-edit.component";
 import { RecipesResolverService } from "./recipes/recipes-resolver.service";
+import { AuthComponent } from "./auth/auth.component";
 
 const appRoutes:Routes = [
     {path:'recipes',component:RecipesComponent,children:[
@@ -17,7 +18,8 @@ const appRoutes:Routes = [
     ]},
     {path:'shopping-list',component:ShoppingListComponent},
     {path:'page-not-found',component:PageNotFoundComponent},
-    {path:'',redirectTo:'/recipes',pathMatch:'full'},
+    {path:'auth',component:AuthComponent},
+    {path:'',redirectTo:'/auth',pathMatch:'full'},
     {path:'**',redirectTo:'page-not-found'}
 ]
 
