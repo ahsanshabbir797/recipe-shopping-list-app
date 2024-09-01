@@ -8,9 +8,10 @@ import { RecipePlaceholderComponent } from "./recipes/recipe-placeholder/recipe-
 import { RecipeEditComponent } from "./recipes/recipe-edit/recipe-edit.component";
 import { RecipesResolverService } from "./recipes/recipes-resolver.service";
 import { AuthComponent } from "./auth/auth.component";
+import { AuthGuard } from "./auth/auth-guard";
 
 const appRoutes:Routes = [
-    {path:'recipes',component:RecipesComponent,children:[
+    {path:'recipes',component:RecipesComponent,canActivate:[AuthGuard],children:[
         {path:'',component:RecipePlaceholderComponent},
         {path:'new',component:RecipeEditComponent},
         {path:':id',component:RecipeDetailComponent,resolve:[RecipesResolverService]},
